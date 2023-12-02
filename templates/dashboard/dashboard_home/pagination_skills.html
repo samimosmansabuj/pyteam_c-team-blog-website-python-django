@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-sm-12 col-md-5">
+        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+            Showing {{skills.number}} to {{paginator.num_pages}} of {{paginator.count}} entries</div>
+    </div>
+    <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+            <ul class="pagination">
+
+                {% if skills.has_previous %}
+                <li class="paginate_button page-item previous {% if not skills.has_previous %}disabled{% endif %}"
+                    id="DataTables_Table_0_previous"><a href="?page={{skills.previous_page_number}}" aria-controls="DataTables_Table_0"
+                        data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                {% else %}
+                <li class="paginate_button page-item disabled" id="DataTables_Table_0_next">
+                    <a aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                        class="page-link">Previous</a></li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+                {% if skills.number > i|add:"-3" and skills.number < i|add:"+3" %}
+                <li class="paginate_button page-item {% if skills.number == i %}active{% endif %}"><a href="?page={{i}}"
+                        aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0"
+                        class="page-link">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if skills.has_next %}
+                <li class="paginate_button page-item next {% if not skills.has_next %}disabled{% endif %}" id="DataTables_Table_0_next">
+                    <a href="?page={{skills.next_page_number}}"
+                        aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                        class="page-link">Next</a></li>
+                {% else %}
+                <li class="paginate_button page-item disabled" id="DataTables_Table_0_next">
+                    <a aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                        class="page-link">Next</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

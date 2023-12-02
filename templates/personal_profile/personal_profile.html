@@ -1,0 +1,27 @@
+{% extends 'personal_profile_base.html' %} {% load static %} {% block main_content %}
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+  {% include './about.html' %}
+
+  <!-- ======= Facts Section ======= -->
+  {% include './facts.html' %}
+
+  <!-- ======= Skills Section ======= -->
+  {% include './skills.html' %}
+
+  <!-- ======= Resume Section ======= -->
+  {% include './resume.html' %}
+
+  <!-- ======= Portfolio Section ======= -->
+  {% include './portfolio.html' %}
+
+  <!-- ======= Testimonials Section ======= -->
+  {% include './testimonials.html' %}
+
+  <!-- ======= Contact Section ======= -->
+  {% include './contact.html' %}
+</main>
+<!-- End #main -->
+
+{% endblock main_content %}

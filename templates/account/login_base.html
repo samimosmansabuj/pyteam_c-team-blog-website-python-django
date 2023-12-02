@@ -1,0 +1,36 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'dashboard/img/favicon.ico' %}">
+
+    {% block login_base_title %}
+    <title>Login Base Title</title>
+    {% endblock login_base_title %}
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    {% block login_base_body_content %}
+    <h1>This is Login Base Page</h1>
+    {% endblock login_base_body_content %}
+
+
+    <script src="{% static 'dashboard/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dashboard/js/app.js' %}"></script>
+</body>
+
+
+<!-- login23:12-->
+</html>

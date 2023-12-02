@@ -1,0 +1,109 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+{% block title %}
+<title>About Us Settings - Pyteam C</title>
+{% endblock title %}
+
+{% block sidebar_nav %} 
+{% include "../../site_settings_nav.html" %}
+{% endblock sidebar_nav %} 
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <h3 class="page-title">About Us Settings</h3> {% for messages in messages %} {% if messages %} <i>{{messages}}</i> {% endif %} {% endfor %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team Profile Picture</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if team_about_us.team_profile_pic %}
+                                    <img alt="" src="{{team_about_us.team_profile_pic.url}}">
+                                    {% else %}
+                                    <img alt="" src="/static/dashboard/img/user.jpg">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="team_profile_pic">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team College Name</label>
+                            <input class="form-control " value="{{team_about_us.team_college}}" type="text" name="college_name">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            {% comment %} <label>Team Phone Number <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" value=""> {% endcomment %}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12  col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control" name="short_description">{{team_about_us.team_short_description}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12  col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label>Details Description</label>
+                            <textarea class="form-control" name="details_description">{{team_about_us.team_details_description}}</textarea>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <hr>
+                
+
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Team Clients</label>
+                            <input class="form-control" value="{{team_about_us.team_team_clients}}" type="text" name="team_team_clients">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Team Projects</label>
+                            <input class="form-control" value="{{team_about_us.team_projects}}" type="text" name="team_projects">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Team Awards</label>
+                            <input class="form-control" value="{{team_about_us.team_awards}}" type="text" name="team_awards">
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-sm-12 text-center m-t-20">
+                        <button type="sunmit" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

@@ -1,0 +1,57 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Team Members - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+<div class="content">
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title">Team Members</h4> {% for messages in messages %} {% if messages %} <i>{{messages}}</i> {% endif %} {% endfor %}
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href="{% url 'add_new_member' %}" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+    </div>
+    <div class="row doctor-grid">
+
+        {% for team_member in team_member %}
+        <div class="col-md-4 col-sm-4  col-lg-3">
+            <div class="profile-widget">
+                <div class="doctor-img">
+                    <a class="avatar"><img alt="" src="{{team_member.image.url}}"></a>
+                </div>
+                <div class="dropdown profile-action">
+
+
+                    {% if request.user.is_admin == True %}
+                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{% url 'update_team_member' team_member.id %}">
+                            <i class="fa fa-pencil m-r-5"></i> Edit
+                        </a>
+                        <a class="dropdown-item" href="{% url 'delete_team_member' team_member.id %}" data-toggle="modal">
+                            <i class="fa fa-trash-o m-r-5"></i> Delete
+                        </a>
+                    </div>
+                    {% endif %}
+
+                </div>
+                <h4 class="doctor-name text-ellipsis"><a>{{team_member.name}}</a></h4>
+                <div class="doc-prof">{{team_member.phone_number}}</div>
+                <div class="user-country">
+                    <i class="fa fa-id-card"></i> {{team_member.designation}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    
+    
+    <!-- {% include './pagination_team_member.html' %} -->
+
+</div>
+{% endblock body_content %}

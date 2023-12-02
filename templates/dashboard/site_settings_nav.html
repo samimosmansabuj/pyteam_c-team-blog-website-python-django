@@ -1,0 +1,88 @@
+{% url 'site_settings' as site_settings_url %}
+{% url 'social_profile' as social_profile_url %}
+{% url 'about_us' as about_us_url %}
+{% url 'page_slider_settings' as page_slider_settings_url %}
+{% url 'change_password_admin' as change_password_admin_url %}
+
+<div class="sidebar" id="sidebar">
+  <div
+    class="slimScrollDiv"
+    style="position: relative; overflow: hidden; width: 100%; height: 635px">
+    <div
+      class="sidebar-inner slimscroll"
+      style="overflow: hidden; width: 100%; height: 635px">
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="{% url 'dashboard_home' %}">
+              <i class="fa fa-home back-icon"></i> <span>Back to Home</span>
+            </a>
+          </li>
+          <li class="menu-title">Settings</li>
+
+          <li {% if request.path == site_settings_url %}class="active"{% endif %}>
+            <a href="{{site_settings_url}}">
+              <i class="fa fa-building"></i> <span>Company Settings</span>
+            </a>
+          </li>
+
+          <li {% if request.path == social_profile_url %}class="active"{% endif %}>
+            <a href="{{social_profile_url}}">
+              <i class="fa fa-share-square"></i> <span>Social Profile</span>
+            </a>
+          </li>
+          
+          <li {% if request.path == page_slider_settings_url %}class="active"{% endif %}>
+            <a href="{{page_slider_settings_url}}">
+              <i class="fa fa-sliders"></i> <span>Page Slider Settings</span>
+            </a>
+          </li>
+          
+
+          <li {% if request.path == about_us_url %}class="active"{% endif %}>
+            <a href="{{about_us_url}}" >
+              <i class="fa fa-users"></i> <span>About Us</span>
+            </a>
+          </li>
+
+          <li {% if request.path == change_password_admin_url %}class="active"{% endif %}>
+            <a href="{{change_password_admin_url}}">
+              <i class="fa fa-lock"></i> <span>Change Password</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div
+      class="slimScrollBar"
+      style="
+        background: rgb(204, 204, 204);
+        width: 7px;
+        position: absolute;
+        top: 0px;
+        opacity: 0.4;
+        display: none;
+        border-radius: 7px;
+        z-index: 99;
+        right: 1px;
+        height: 635px;
+      "
+    ></div>
+    <div
+      class="slimScrollRail"
+      style="
+        width: 7px;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        display: none;
+        border-radius: 7px;
+        background: rgb(51, 51, 51);
+        opacity: 0.2;
+        z-index: 90;
+        right: 1px;
+      "
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+{% extends '../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Skills - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title">Skills</h4>
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            
+        </div>
+    </div>
+    <div class="row doctor-grid">
+
+        {% for skills in skills %}
+        <div class="col-md-4 col-sm-4  col-lg-3">
+            <div class="profile-widget">
+                <div class="doctor-img">
+                    <a class="avatar"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                </div>
+                <div class="dropdown profile-action">
+
+
+                    {% if request.user.is_admin == True %}
+                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href=""><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_doctor"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                <h4 class="doctor-name text-ellipsis"><a>{{skills.name}}</a></h4>
+                <div class="doc-prof">{{skills.stage}}</div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    
+    {% include './pagination_skills.html' %}
+
+</div>
+
+{% endblock body_content %}

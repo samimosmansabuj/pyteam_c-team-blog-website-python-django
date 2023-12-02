@@ -1,0 +1,30 @@
+<!-- ======= Our Team ======= -->
+<section id="our_team" class="services">
+    <div class="container">
+  
+      <div class="section-title">
+        <h2>Team</h2>
+        <p>Our Team Members</p>
+      </div>
+  
+      <div class="row">
+
+        {% for team_members in team_members %}
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4">
+          <div class="icon-box" style="width: 100%; padding: 10px; border-radius: 30px 0px;">
+
+            <div><img src="{{team_members.image.url}}" alt="" style="width: 70%; padding-top: 10px; border-radius: 10px;"></a></div>
+            <hr>
+            <!-- <div class="icon"><i class="bx bxl-dribbble"></i></div> -->
+            <h4><a href="{% url 'personal_profile' team_members.id %}" target="_blank">{{team_members.name}}</a></h4>
+            <p>{{team_members.phone_number}}</p>
+            <p>{{team_members.email}}</p>
+            <p>{{team_members.designation}}</p>
+          </div>
+        </div>
+        {% endfor %}
+  
+      </div>
+  
+    </div>
+  </section><!-- End Services Section -->

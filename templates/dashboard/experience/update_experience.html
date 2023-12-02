@@ -1,0 +1,119 @@
+{% extends '../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Experience - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Update Experience</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Member <span class="text-danger">*</span></label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="member">
+
+                                {% if request.user.is_team_member == True %}
+
+                                    {% if request.user.is_admin == True %}
+                                    
+                                        <option value="{{experience.team_member.id}}" selected>{{experience.team_member.name|title}}</option>
+                                        {% for member in member %}
+                                        <option value="{{member.id}}">{{member.name}}</option>
+                                        {% endfor %}
+
+                                    {% else %}
+                                    
+                                    <option value="{{experience.team_member.id}}" selected>{{experience.team_member.name|title}}</option>
+                                    
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <option value="{{experience.team_member.id}}" selected>{{experience.team_member.name|title}}</option>
+                                    {% for member in member %}
+                                    <option value="{{member.id}}">{{member.name}}</option>
+                                    {% endfor %}
+
+                                {% endif %}
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Company Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="company_name" value="{{experience.company_name}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Post</label>
+                            <input class="form-control" type="text" name="post_name" value="{{experience.post_name}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input class="form-control" type="text" name="address" value="{{experience.address}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Starting Date <span class="text-danger">*</span></label>
+                            <input class="form-control" type="date" name="starting_date" value="{{experience.starting_date|date:"Y-m-d"}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Ending Date</label>
+                            <input class="form-control" type="date" name="ending_date" value="{{experience.ending_date|date:"Y-m-d"}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control" rows="3" cols="30" name="short_description">{% if experience.short_description %}{{experience.short_description}}{% endif %}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+
+                <div class="m-t-20 text-center">
+                    <button type="submit" class="btn btn-primary submit-btn">Update Experience</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

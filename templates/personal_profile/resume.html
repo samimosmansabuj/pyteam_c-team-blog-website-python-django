@@ -1,0 +1,91 @@
+{% load static %}
+<!-- ======= Resume Section ======= -->
+<section id="resume" class="resume">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Resume</h2>
+      <p>
+        {{about_me.resume_description}}
+      </p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-6" data-aos="fade-up">
+        <h3 class="resume-title">Sumary</h3>
+        <div class="resume-item pb-0">
+          <h4>{{team_member.name}}</h4>
+          <p><em>{{about_me.short_description}}</em>
+          </p>
+          <ul>
+            <li>{{about_me.address_upazila}},{{about_me.address_district}}, {{about_me.address_country}}</li>
+            <li>{{team_member.phone_number}}</li>
+            <li>{{team_member.email}}</li>
+          </ul>
+        </div>
+
+
+
+        <h3 class="resume-title">Education</h3>
+        {% for education in education %}
+        <div class="resume-item">
+          <h4>{{education.degree_name}}</h4>
+          <h5>{{education.starting_date}} - 
+            {% if education.ending_date %}{{education.ending_date}}{% else %}Present{% endif %}</h5>
+            
+          <!-- <p><em>{{education.institute_name}}, Rochester, NY</em></p> -->
+          <p><em>From, {{education.institute_name}}
+              {% if education.result %}with a GPA {{education.result}} {% else %} (Running) {% endif %}
+            </em></p>
+          <p><em>Duration# {{education.duration}} | Subject# {{education.subject}}
+            </em></p>
+          <p>{{education.short_description}}
+          </p>
+        </div>
+        {% endfor %}
+
+      </div>
+
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="resume-title">Professional Experience</h3>
+
+        {% for experience in experience %}
+        <div class="resume-item">
+          <h4>{{experience.post_name}} | {{experience.company_name}}</h4>
+          <h5>{{experience.starting_date}} - 
+            {% if experience.ending_date %}{{experience.ending_date}}{% else %}Present{% endif %}</h5>
+
+          <p><em>{{experience.address}} </em></p>
+          <p>{{experience.short_description}}</p>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <h3 class="resume-title" style="text-align: center;">Professional Certifications</h3>
+
+      {% for certification in certification %}
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="resume-item">
+          <h4>{{certification.course_name}}</h4>
+          <h5>{{certification.starting_date}} - 
+            {% if certification.ending_date %}{{certification.ending_date}}{% else %}Present{% endif %}</h5>
+
+          <p><em>Duration# {{certification.duration}}
+            {% if certification.institute_address %} | {{certification.institute_address}} {% endif %}</em></p>
+
+          <p>{{certification.short_description}}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+
+  </div>
+</section><!-- End Resume Section -->

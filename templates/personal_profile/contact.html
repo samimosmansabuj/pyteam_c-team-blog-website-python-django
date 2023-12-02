@@ -1,0 +1,75 @@
+{% load static %}
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Contact</h2>
+            <p>{{about_me.short_description}}</p>
+        </div>
+
+        <div class="row" data-aos="fade-in">
+
+            <div class="col-lg-5 d-flex align-items-stretch">
+                <div class="info">
+                    <div class="address">
+                        <i class="bi bi-geo-alt"></i>
+                        <h4>Location:</h4>
+                        <p>{{about_me.address_upazila}}, {{about_me.address_district}}, {{about_me.address_country}}</p>
+                    </div>
+
+                    <div class="email">
+                        <i class="bi bi-envelope"></i>
+                        <h4>Email:</h4>
+                        <p>{{team_member.email}}</p>
+                    </div>
+
+                    <div class="phone">
+                        <i class="bi bi-phone"></i>
+                        <h4>Call:</h4>
+                        <p>{{team_member.phone_number}}</p>
+                    </div>
+
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.294787563545!2d90.420539!3d23.7358337!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9c5bc862a1d%3A0x1f41e760d5fac09d!2sSafa%20World!5e0!3m2!1sen!2sbd!4v1700249177802!5m2!1sen!2sbd"
+                        frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                </div>
+
+            </div>
+
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <form action="{% url 'personal_contact' %}" method="POST" class="python-email-form" novalidate>
+                <!-- <form action="{% url 'personal_contact' %}" method="POST" class="form-control" novalidate> -->
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input name="mailer_name" type="text" name="name" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name" class="form-label">Your Email</label>
+                            <input name="to_mail" type="email" class="form-control" name="email" id="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Subject</label>
+                        <input name="mail_subject" type="text" class="form-control" name="subject" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Message</label>
+                        <textarea class="form-control" name="mail_message" rows="10" required></textarea>
+                    </div>
+                    
+                        <input type="number" name="id" hidden value="{{team_member.id}}">
+                    
+                    <!-- <div class="my-3">
+                        <div>Your message has been sent. Thank you!</div>
+                    </div> -->
+                    <div class="text-center"><button type="submit">Send Message</button></div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Contact Section -->

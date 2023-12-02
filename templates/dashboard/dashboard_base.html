@@ -1,0 +1,408 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{{website_settings.team_icon.url}}">
+    <html lang="en">
+{% block title %}
+    <title>Base</title>
+{% endblock title %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static  'dashboard/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'dashboard/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static  'dashboard/css/style.css' %}">
+    <!--[if lt IE 9]>
+		<script src="{% static  'dashboard/js/html5shiv.min.js' %}"></script>
+		<script src="{% static  'dashboard/js/respond.min.js' %}"></script>
+	<![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="{% url 'dashboard_home' %}" class="logo">
+					<img src="{{website_settings.team_icon.url}}" width="35" height="35" alt=""> <span>PyTeam-C</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static  'dashboard/img/user.jpg' %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>{{request.user.username}}</span>
+                    </a>
+                    
+					<div class="dropdown-menu">
+
+                        {% comment %}
+						<a class="dropdown-item" href="{% url 'my_profile' %}">My Profile</a>
+						<a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+                        {% endcomment %}
+						<a class="dropdown-item" href="{% url 'profile_settings' %}">Settings</a>
+						<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+					</div>
+                    
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    
+                    {% comment %}
+                    <a class="dropdown-item" href="{% url 'my_profile' %}">My Profile</a>
+                    <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+                    {% endcomment %}
+                    <a class="dropdown-item" href="{% url 'profile_settings' %}">Settings</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        {% url 'dashboard_home' as dashboard_home_url %}
+        {% url 'dashboard_team_member' as dashboard_team_member_url %}
+        {% url 'team_testimonials' as team_testimonials_url %}
+        {% url 'skills_list' as skills_list_url %}
+        {% url 'portfolio_category' as portfolio_category_url %}
+        {% url 'all_portfolio' as all_portfolio_url %}
+        {% url 'testimonials' as testimonials_url %}
+        {% url 'education' as education_url %}
+        {% url 'certificate' as certificate_url %}
+        {% url 'experience' as experience_url %}
+
+
+        {% block sidebar_nav %}
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li {% if request.path == dashboard_home_url %}class="active"{% endif %}>
+                            <a href="{{dashboard_home_url}}">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+
+						<li {% if request.path == dashboard_team_member_url %}class="active"{% endif %}>
+                            <a href="{{dashboard_team_member_url}}">
+                                <i class="fa fa-users"></i> <span>Team Members</span>
+                            </a>
+                        </li>
+
+
+
+						<li {% if request.path == skills_list_url %}class="active"{% endif %}>
+                            <a href="{{skills_list_url}}">
+                                <i class="fa fa-cogs"></i> <span>Skills</span>
+                            </a>
+                        </li>
+
+                        {% if request.user.is_admin == True %}
+						<li {% if request.path == portfolio_category_url %}class="active"{% endif %}>
+                            <a href="{{portfolio_category_url}}">
+                                <i class="fa fa-list-alt"></i> <span>Portfolio Category</span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+
+						<li {% if request.path == all_portfolio_url %}class="active"{% endif %}>
+                            <a href="{{all_portfolio_url}}">
+                                <i class="fa fa-briefcase"></i> <span>Portfolio</span>
+                            </a>
+                        </li>
+
+
+						<!-- <li {% if request.path == team_testimonials_url %}class="active"{% endif %}>
+                            <a href="{{team_testimonials_url}}">
+                                <i class="fa fa-quote-left"></i> <span>Team Textimonials</span>
+                            </a>
+                        </li> -->
+
+						<li {% if request.path == testimonials_url %}class="active"{% endif %}>
+                            <a href="{{testimonials_url}}">
+                                <i class="fa fa-quote-left"></i> <span>Testimonials</span>
+                            </a>
+                        </li>
+
+
+						<li {% if request.path == education_url %}class="active"{% endif %}>
+                            <a href="{{education_url}}">
+                                <i class="fa fa-graduation-cap"></i> <span>Education</span>
+                            </a>
+                        </li>
+
+
+						<li {% if request.path == certificate_url %}class="active"{% endif %}>
+                            <a href="{{certificate_url}}">
+                                <i class="fa fa-certificate"></i> <span>Certificate</span>
+                            </a>
+                        </li>
+
+						<li {% if request.path == experience_url %}class="active"{% endif %}>
+                            <a href="{{experience_url}}">
+                                <i class="fa fa-globe"></i> <span>Experience</span>
+                            </a>
+                        </li>
+
+                        {% if request.user.is_admin == True %}
+                        <li>
+                            <a href="{% url 'site_settings' %}"><i class="fa fa-cog"></i> <span>Site Settings</span></a>
+                        </li>
+                        {% endif %}
+                        {% if request.user.is_team_member == True %}
+                        <li>
+                            <a href="{% url 'profile_settings' %}"><i class="fa fa-cog"></i> <span>Member Settings</span></a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock sidebar_nav %}
+        
+
+
+        <div class="page-wrapper">
+
+                
+            {% block body_content %}
+            <h1>Base page body content</h1>
+            {% endblock body_content %}
+
+
+
+            <div class="notification-box">
+                <div class="msg-sidebar notifications msg-noti">
+                    <div class="topnav-dropdown-header">
+                        <span>Messages</span>
+                    </div>
+                    <div class="drop-scroll msg-list-scroll" id="msg_list">
+                        <ul class="list-box">
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">R</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Richard Miles </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item new-message">
+                                        <div class="list-left">
+                                            <span class="avatar">J</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">John Doe</span>
+                                            <span class="message-time">1 Aug</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">T</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Tarah Shropshire </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">M</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Mike Litorus</span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">C</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Catherine Manseau </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">D</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Domenic Houston </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">B</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Buster Wigton </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">R</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Rolland Webber </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">C</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author"> Claire Mapes </span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">M</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Melita Faucher</span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">J</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Jeffery Lalor</span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">L</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Loren Gatlin</span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="chat.html">
+                                    <div class="list-item">
+                                        <div class="list-left">
+                                            <span class="avatar">T</span>
+                                        </div>
+                                        <div class="list-body">
+                                            <span class="message-author">Tarah Shropshire</span>
+                                            <span class="message-time">12:28 AM</span>
+                                            <div class="clearfix"></div>
+                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="topnav-dropdown-footer">
+                        <a href="chat.html">See all messages</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="{% static  'dashboard/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static  'dashboard/js/popper.min.js' %}"></script>
+    <script src="{% static  'dashboard/js/bootstrap.min.js' %}"></script>
+    <script src="{% static  'dashboard/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static  'dashboard/js/Chart.bundle.js' %}"></script>
+    <script src="{% static  'dashboard/js/chart.js' %}"></script>
+    <script src="{% static  'dashboard/js/app.js' %}"></script>
+
+</body>
+</html>

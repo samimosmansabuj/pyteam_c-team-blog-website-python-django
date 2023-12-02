@@ -1,0 +1,168 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+{% block title %}
+<title>Team Profile Settings - Pyteam C</title>
+{% endblock title %}
+
+{% block sidebar_nav %} 
+{% include "../../profile_settings_nav.html" %}
+{% endblock sidebar_nav %} 
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST">
+                {% csrf_token %}
+                <h3 class="page-title">Profile Settings</h3>
+                {% for messages in messages %} {% if messages %} <i>{{messages}}</i> {% endif %} {% endfor %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team Member <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="team_member" value="{{about_me.team_member.name|title}}" readonly disable>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="gender">
+                                <option value="{{about_me.team_member.gender}}">{{about_me.team_member.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Clients</label>
+                            <input type="number" class="form-control" name="clients" {% if about_me.clients %}value="{{about_me.clients}}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Projects</label>
+                            <input type="number" class="form-control" name="projects" {% if about_me.projects %}value="{{about_me.projects}}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Hours</label>
+                            <input type="number" class="form-control" name="hours" {% if about_me.hours %}value="{{about_me.hours}}"{% endif %}>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-3">
+                        <div class="form-group">
+                            <label>Awards</label>
+                            <input type="number" class="form-control" name="awards" {% if about_me.awards %}value="{{about_me.awards}}"{% endif %}>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="short_description">Short Description</label>
+                            <textarea class="form-control" name="short_description" id="" rows="3">{% if about_me.short_description %}{{about_me.short_description}}{% endif %}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                       <div class="form-group">
+                            <label for="details_description">Details Description</label>
+                            <textarea class="form-control" name="details_description" id="" rows="3">{% if about_me.details_description %}{{about_me.details_description}}{% endif %}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="resume_description">Resume Description</label>
+                            <textarea class="form-control" name="resume_description" id="" rows="3">{% if about_me.resume_description %}{{about_me.resume_description}}{% endif %}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                       <div class="form-group">
+                            <label for="testimonials_description">Testimonials Description</label>
+                            <textarea class="form-control" name="testimonials_description" id="" rows="3">{% if about_me.testimonials_description %}{{about_me.testimonials_description}}{% endif %}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control" name="address"  {% if about_me.address %}value="{{about_me.address}}"{% endif %}>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label>Upazila</label>
+                                <input type="text" class="form-control" name="address_upazila"  {% if about_me.address_upazila %}value="{{about_me.address_upazila}}"{% endif %}>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label>District</label>
+                                <select class="form-control select select2-hidden-accessible" tabindex="-1" 
+                                aria-hidden="true" name="address_district">
+                                    {% if about_me.address_district %}
+                                    <option selected value="{{about_me.address_district}}">{{about_me.address_district}}</option>
+                                    {% else %}
+                                    <option selected disabled>Select District</option>
+                                    {% endif %}
+                                    <option value="Dhaka">Dhaka</option>
+                                    <option value="Comilla">Comilla</option>
+                                    <option value="Gazipur">Gazipur</option>
+                                    <option value="Sylhet">Sylhet</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control select select2-hidden-accessible" tabindex="-1" 
+                                aria-hidden="true" name="address_country">
+                                    {% if about_me.address_country %}
+                                    <option selected value="{{about_me.address_country}}">{{about_me.address_country}}</option>
+                                    {% else %}
+                                    <option selected disabled>Select Country</option>
+                                    {% endif %}
+                                    <option>Bangladesh</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="USA">USA</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-sm-12 text-center m-t-20">
+                        <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

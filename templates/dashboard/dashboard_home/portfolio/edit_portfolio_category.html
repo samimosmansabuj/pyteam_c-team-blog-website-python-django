@@ -1,0 +1,41 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Portfolio Category - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Update Portfolio Category</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <input class="form-control" type="text" value="{{portfolio_category.title}}" name="portfolio_category_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                                <button type="submit" class="btn btn-primary submit-btn">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

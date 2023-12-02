@@ -1,0 +1,73 @@
+{% url 'profile_settings' as profile_settings_url %}
+{% url 'profile_social_link' as profile_social_link_url %}
+{% url 'change_password_member' as change_password_member_url %}
+
+<div class="sidebar" id="sidebar">
+  <div
+    class="slimScrollDiv"
+    style="position: relative; overflow: hidden; width: 100%; height: 635px">
+    <div
+      class="sidebar-inner slimscroll"
+      style="overflow: hidden; width: 100%; height: 635px">
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="{% url 'dashboard_home' %}"
+              ><i class="fa fa-home back-icon"></i> <span>Back to Home</span></a
+            >
+          </li>
+          <li class="menu-title">Settings</li>
+          <li {% if request.path == profile_settings_url %}class="active"{% endif %}>
+            <a href="{{profile_settings_url}}">
+              <i class="fa fa-building"></i> <span>Profile Settings</span>
+            </a>
+          </li>
+
+          <li {% if request.path == profile_social_link_url %}class="active"{% endif %}>
+            <a href="{{profile_social_link_url}}">
+              <i class="fa fa-building"></i> <span>Profile Social Link</span>
+            </a>
+          </li>
+
+
+          <li {% if request.path == change_password_member_url %}class="active"{% endif %}>
+            <a href="{{change_password_member_url}}">
+              <i class="fa fa-lock"></i> <span>Change Password</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div
+      class="slimScrollBar"
+      style="
+        background: rgb(204, 204, 204);
+        width: 7px;
+        position: absolute;
+        top: 0px;
+        opacity: 0.4;
+        display: none;
+        border-radius: 7px;
+        z-index: 99;
+        right: 1px;
+        height: 635px;
+      "
+    ></div>
+    <div
+      class="slimScrollRail"
+      style="
+        width: 7px;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        display: none;
+        border-radius: 7px;
+        background: rgb(51, 51, 51);
+        opacity: 0.2;
+        z-index: 90;
+        right: 1px;
+      "
+    ></div>
+  </div>
+</div>

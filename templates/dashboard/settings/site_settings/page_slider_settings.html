@@ -1,0 +1,73 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+{% block title %}
+<title>Site Page Slider Settings - Pyteam C</title>
+{% endblock title %}
+
+{% block sidebar_nav %} 
+{% include "../../site_settings_nav.html" %}
+{% endblock sidebar_nav %} 
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <h3 class="page-title">Site Home Slider Settings</h3> {% for messages in messages %} {% if messages %} <i>{{messages}}</i> {% endif %} {% endfor %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Page Slider Image</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if team_blog_slide.slide_image %}
+                                    <img alt="" src="{{team_blog_slide.slide_image.url}}">
+                                    {% else %}
+                                    <img alt="" src="/static/dashboard/img/user.jpg">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="slide_image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Slider Title <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" value="{{team_blog_slide.slide_title}}" name="slide_title">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Designation Title First <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" value="{{team_blog_slide.title_first}}" name="title_first">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Designation Title Second </label>
+                            <input class="form-control " type="text" value="{{team_blog_slide.title_second}}" name="title_second">
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-sm-12 text-center m-t-20">
+                        <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

@@ -1,0 +1,140 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+{% block title %}
+<title>Site Settings - Pyteam C</title>
+{% endblock title %}
+
+{% block sidebar_nav %}
+{% include "../../site_settings_nav.html" %}
+{% endblock sidebar_nav %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <h3 class="page-title">Company Settings</h3> {% for messages in messages %} {% if messages %} <i>{{messages}}</i> {% endif %} {% endfor %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Website Icon</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if team_setting_config.team_icon %}
+                                    <img alt="" src="{{team_setting_config.team_icon.url}}">
+                                    {% else %}
+                                    <img alt="" src="/static/dashboard/img/user.jpg">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="team_icon">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Website Logo</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if team_setting_config.team_logo %}
+                                    <img alt="" src="{{team_setting_config.team_logo.url}}">
+                                    {% else %}
+                                    <img alt="" src="/static/dashboard/img/user.jpg">
+                                    {% endif %}
+                                    
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="team_logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" value="{{team_setting_config.team_title}}" name="team_title">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Team Designation</label>
+                            <input class="form-control " value="{{team_setting_config.team_designation}}" type="text" name="team_designation">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input class="form-control " value="{{team_setting_config.team_address}}"
+                                type="text" name="team_address">
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label>Upazila</label>
+                            <input class="form-control" value="{{team_setting_config.team_address_upazila}}" type="text" name="team_address_upazila">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label>State/City</label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="team_address_district">
+
+                                <option selected>{{team_setting_config.team_address_district}}</option>
+                                <option>Dhaka</option>
+                                <option>Comilla</option>
+                                <option>Chittagong</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true">
+                                <option selected>Bangladesh</option>
+                                <option>Bangladesh</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" value="{{team_setting_config.team_email}}" type="email" name="team_email">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input class="form-control" value="{{team_setting_config.team_phone_number}}" type="text" name="team_phone_number">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12 text-center m-t-20">
+                        <button type="submit" class="btn btn-primary submit-btn">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

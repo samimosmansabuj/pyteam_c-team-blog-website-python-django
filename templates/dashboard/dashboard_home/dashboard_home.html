@@ -1,0 +1,80 @@
+{% extends '../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Dashboard - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    {% if team_member %}
+                    <h3>{{team_member.count}}</h3>
+                    {% else %}
+                    <h3>0</h3>
+                    {% endif %}
+                    
+                    <span class="widget-title1">
+                        <a href="{% url 'dashboard_team_member' %}" style="text-decoration: none; color: white;">
+                            TEAM MEMBERS <i class="fa fa-users" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-briefcase"></i></span>
+                <div class="dash-widget-info text-right">
+                    {% if project %}
+                    <h3>{{project.count}}</h3>
+                    {% else %}
+                    <h3>0</h3>
+                    {% endif %}
+                    <span class="widget-title2">
+                        <a href="{% url 'all_portfolio' %}" style="text-decoration: none; color: white;">
+                            TEAM PORTFOLIO <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-quote-left" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    {% if testimonial %}
+                    <h3>{{testimonial.count}}</h3>
+                    {% else %}
+                    <h3>0</h3>
+                    {% endif %}
+                    <span class="widget-title3">
+                        <a href="{% url 'testimonials' %}" style="text-decoration: none; color: white;">
+                            TESTIMONIALS <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-certificate" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>0</h3>
+                    <span class="widget-title4">
+                        <a href="{% url 'certificate' %}" style="text-decoration: none; color: white;">
+                            CERTIFICATE <i class="fa fa-certificate" aria-hidden="true"></i>
+                        </a>
+                    </span>
+
+                    <i class="fa-solid fa-award"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body_content %}

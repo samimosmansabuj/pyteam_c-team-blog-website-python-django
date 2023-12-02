@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{team_setting_config.team_title}}</title>
+{% endblock title %}
+
+
+
+{% block body_content %}
+<!-- ======= Header ======= -->
+{% include './header.html' %}
+
+<!-- ======= Our Team ======= -->
+{% include './our_team.html' %}
+
+<!-- ======= About Section ======= -->
+{% include './about_us.html' %}
+
+<!-- ======= Contact Section ======= -->
+{% include './contact.html' %}
+
+<!-- ======= Resume Section ======= -->
+<!-- {% include './resume.html' %} -->
+
+<!-- ======= Portfolio Section ======= -->
+<!-- {% include './portfolio.html' %} -->
+
+{% endblock body_content %}

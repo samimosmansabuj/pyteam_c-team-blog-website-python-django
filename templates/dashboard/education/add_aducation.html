@@ -1,0 +1,161 @@
+{% extends '../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add Education Qualification - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Add Education</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Member <span class="text-danger">*</span></label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="member">
+
+
+
+                                {% if request.user.is_team_member == True %}
+
+                                    {% if request.user.is_admin == True %}
+                                        <option selected disabled>Select Team Member</option>
+                                        {% for member in member %}
+                                        <option value="{{member.id}}">{{member.name}}</option>
+                                        {% endfor %}
+                                    {% else %}
+
+                                    <option selected value="{{member.id}}">{{member.name}}</option>
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <option selected disabled>Select Team Member</option>
+                                    {% for member in member %}
+                                    <option value="{{member.id}}">{{member.name}}</option>
+                                    {% endfor %}
+
+                                {% endif %}
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Degree <span class="text-danger">*</span></label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="degree_name">
+                                <option selected disabled>Select Team Member</option>
+                                <option value="SSC">SSC</option>
+                                <option value="HSC">HSC</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="BSc">BSc</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Subject <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="subject">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Result</label>
+                            <input class="form-control" type="text" name="result">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Institute Name <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="institute_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Institute Address</label>
+                            <input class="form-control" type="text" name="institute_address">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Starting Date <span class="text-danger">*</span></label>
+                            <input class="form-control" type="date" name="starting_date">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Ending Date</label>
+                            <input class="form-control" type="date" name="ending_date">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Duration <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="duration">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="display-block">Complete <span class="text-danger">*</span></label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="doctor_active" value="Yes"
+                                    checked="">
+                                <label class="form-check-label" for="doctor_active">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="doctor_inactive" value="No">
+                                <label class="form-check-label" for="doctor_inactive">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control" rows="3" cols="30" name="short_description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+
+                <div class="m-t-20 text-center">
+                    <button type="submit" class="btn btn-primary submit-btn">Add Education Qualification</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}

@@ -1,0 +1,160 @@
+{% extends '../../dashboard_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Portfolio - Pyteam C</title>
+{% endblock title %}
+
+{% block body_content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Update Portfolio</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Member</label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="member">
+
+                                {% if request.user.is_team_member == True %}
+
+                                    {% if request.user.is_admin == True %}
+                                    
+                                        <option value="{{portfolio.team_member.id}}" selected>{{portfolio.team_member.name|title}}</option>
+                                        {% for member in member %}
+                                        <option value="{{member.id}}">{{member.name}}</option>
+                                        {% endfor %}
+
+                                    {% else %}
+                                    <option selected value="{{member.id}}">{{member.name}}</option>
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <option value="{{portfolio.team_member.id}}" selected>{{portfolio.team_member.name|title}}</option>
+                                    {% for member in member %}
+                                    <option value="{{member.id}}">{{member.name}}</option>
+                                    {% endfor %}
+
+                                {% endif %}
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control select select2-hidden-accessible" tabindex="-1"
+                                aria-hidden="true" name="category">
+                                <option selected value="{{portfolio.portfolio_category.id}}">{{portfolio.portfolio_category}}</option>
+                                {% for portfolio_category in portfolio_category %}
+                                <option value="{{portfolio_category.id}}">{{portfolio_category.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Portfolio Image</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if portfolio.portfolio_image %}
+                                    <img alt="" src="{{portfolio.portfolio_image.url}}">
+                                    {% else %}
+                                    <img alt="" src="{% static 'dashboard/img/user.jpg' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="portfolio_image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Cover Image</label>
+                            <div class="profile-upload">
+                                <div class="upload-img">
+                                    {% if portfolio.portfolio_cover_image %}
+                                    <img alt="" src="{{portfolio.portfolio_cover_image.url}}">
+                                    {% else %}
+                                    <img alt="" src="{% static 'dashboard/img/user.jpg' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="upload-input">
+                                    <input type="file" class="form-control" name="portfolio_cover_image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Title <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" name="title" value="{{portfolio.title}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Link</label>
+                            <input class="form-control" type="url" name="link" value="{{portfolio.link}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Short Description</label>
+                            <textarea class="form-control" rows="3" cols="30" name="short_description">{{portfolio.short_description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Details</label>
+                            <textarea class="form-control" rows="3" cols="30" name="details">{{portfolio.details}}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="display-block">Status</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="doctor_active" value="Active"
+                            {% if portfolio.is_active == True %}checked=""{% endif %}>
+                        <label class="form-check-label" for="doctor_active">
+                            Active
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="status" id="doctor_inactive" value="Inactive" {% if portfolio.is_active == False %}checked=""{% endif %}>
+                        <label class="form-check-label" for="doctor_inactive">
+                            Inactive
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="m-t-20 text-center">
+                    <button type="submit" class="btn btn-primary submit-btn">Update Portfolio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}
